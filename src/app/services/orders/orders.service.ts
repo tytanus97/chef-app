@@ -64,18 +64,20 @@ export class OrdersService {
       , orderedDishes2.reduce((acc, curr) => acc + curr.dish.dishPrice, 0), 'active', orderedDishes2,'Jajecznica mocno doprawiona, dorsz smażony bez ziemniaków');
     this._ordersEmplDataArr.push(tmpOrder);
 
+    setTimeout(() => {
 
-    const orderedDishes3 = new Array<OrderedDish>();
+      const orderedDishes3 = new Array<OrderedDish>();
 
-    orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('sniadanie')[0], 'inProgress'));
-    orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('obiad')[0], 'delivered'));
-    orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('sniadanie')[1], 'delivered'));
-    orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('obiad')[2], 'ready'));
-
-    tmpOrder = new Order('3',  this._loggedWaiter, 2, new Date(this._currentDate.getTime() - (1000 * 60 * 5))
-      , orderedDishes3.reduce((acc, curr) => acc + curr.dish.dishPrice, 0), 'active', orderedDishes3,'Jajecznica mocno doprawiona, dorsz smażony bez ziemniaków');
-    this._ordersEmplDataArr.push(tmpOrder);
-
+      orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('sniadanie')[0], 'inProgress'));
+      orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('obiad')[0], 'delivered'));
+      orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('sniadanie')[1], 'delivered'));
+      orderedDishes3.push(new OrderedDish(this.getRandomId(), this._dishService.getAllDishesByCategory('obiad')[2], 'ready'));
+  
+      tmpOrder = new Order('3',  this._loggedWaiter, 2, new Date(this._currentDate.getTime() - (1000 * 60 * 5))
+        , orderedDishes3.reduce((acc, curr) => acc + curr.dish.dishPrice, 0), 'active', orderedDishes3,'Jajecznica mocno doprawiona, dorsz smażony bez ziemniaków');
+      this._ordersEmplDataArr.push(tmpOrder);
+      this.fetchActive();
+    },10000);
     //add random orders for mockup data
     for (let i = 1; i < 10; i++) {
       for (let y = 8; y <= 22; y++) {

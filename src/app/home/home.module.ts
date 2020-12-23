@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
+import { CheckIfAllReadyDirective } from '../directives/check-if-all-ready.directive';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,CheckIfAllReadyDirective]
 })
 export class HomePageModule {}

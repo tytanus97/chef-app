@@ -3,19 +3,17 @@
     <ion-title class="ion-text-center">
       Zamówienia
     </ion-title>
-    
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 <div class="cards-container">
-<ion-card *ngFor="let order of orders">
-  <ion-card-header class="ion-text-center ion-no-padding">
-    <ion-item color="primary">
+<ion-card *ngFor="let order of orders" #orderCard>
+    <ion-card-header class="ion-text-center ion-no-padding" color="primary">
+    <ion-item color="primary" class="header">
       <span slot= "start" style="font-weight: bold;">{{order.waiter.waiterFirstName}} {{order.waiter.waiterLastName}}</span>
-      <ion-label class="ion-text-center">Stolik {{order.table}}</ion-label>
       <span slot="end" style="font-weight:bold">{{order.orderDate | date: 'HH:mm'}}</span>
     </ion-item>
+    <ion-label class="ion-text-center ion-margin-bottom" style="font-size:1rem;">Stolik {{order.table}}</ion-label>
   </ion-card-header>
   <ion-card-content>
     <ion-list>
@@ -33,7 +31,7 @@
                   <div *ngSwitchCase="'delivered'" class="icon-container">
                       <ion-icon name="checkmark-done-outline" style="font-size:1.4rem !important;"></ion-icon>
                   </div>
-                  <div *ngSwitchCase="'currentlyPrepared'" class="icon-container" (click) = "changeStatusToReady(orderedDish)">
+                  <div *ngSwitchCase="'currentlyPrepared'" class="icon-container" (click) = "changeStatusToReady(orderedDish,order,orderCard)">
                     <ion-icon name="timer-outline" style="font-size:1.4rem !important;"></ion-icon>
                   </div>
                   <div *ngSwitchCase="'ready'" class="icon-container">
